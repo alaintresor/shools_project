@@ -2,6 +2,11 @@
 include "connection.php";
 if (isset($_GET['id'])) {
   $schoolId = $_GET['id'];
+  $link = "signUp.php?id=$schoolId";
+  $postTo = "login.php?id=$schoolId";
+} else {
+  $link = "signUp.php";
+  $postTo = "login.php";
 }
 if (isset($_POST['login'])) {
   $username = $_POST['username'];
@@ -10,7 +15,12 @@ if (isset($_POST['login'])) {
   $data = mysqli_query($connect, "$query");
   if (mysqli_num_rows($data)) {
     $row = mysqli_fetch_array($data);
-    header("location:student.php");
+    if (isset($_GET['id'])) {
+      header("location:student.php?id=$row[0]&schoolId=$schoolId");
+      echo $link;
+    } else {
+      header("location:student.php?id=$row[0]");
+    }
   } else {
     echo "<script>alert('Wrong username or password')</script>";
   }
@@ -55,7 +65,7 @@ if (isset($_POST['login'])) {
         <center>
           <h1>Student Page</h1>
         </center>
-        <form class="jumbotron" id="login" method="post" action="login.php">
+        <form class="jumbotron" id="login" method="post" action="<?php echo $postTo; ?>">
           <p class="text-center">Student Login</p>
           <div class="form-group">
             <label for="username">Username:</label>
@@ -67,7 +77,7 @@ if (isset($_POST['login'])) {
           </div>
           <div class="form-group">
             <input type="submit" class="btn btn-primary from-control" value="Login" name="login">
-            <a href='register.html' class="btn">not Register? Register</a>
+            <a href="<?php echo $link; ?>" class="btn">not Register? Register</a>
           </div>
           <h5 class="text-right"><a href="#">Forgot <span class="text-danger">password?</span></a></h5>
         </form>
