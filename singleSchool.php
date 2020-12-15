@@ -1,3 +1,15 @@
+<?php
+//geting id of specific shool
+$id = $_GET['id'];
+
+//connting to database
+include "connection.php";
+
+//make query for getting school infor
+$query = "SELECT * FROM `shools` WHERE  `id`='$id'";
+$data = mysqli_query($connect, "$query");
+$infor = mysqli_fetch_array($data);
+?>
 <!DOCTYPE html>
 <html lang="eng">
 
@@ -58,8 +70,8 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="shools.php">Shools</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="shools.html">Shools</a></li>
                 <li><a href="./contact.html">About Us</a></li>
                 <li><a href="./contact.html">Contact</a></li>
             </ul>
@@ -124,8 +136,8 @@
                     <div class="col-lg-6">
                         <nav class="header__menu">
                             <ul>
-                                <li class="active"><a href="#">Home</a></li>
-                                <li><a href="shools.php">Shools</a></li>
+                                <li><a href="index.html">Home</a></li>
+                                <li class="active"><a href="shools.html">Shools</a></li>
                                 <li><a href="./about.html">About Us</a></li>
                                 <li><a href="./contact.html">Contact</a></li>
                             </ul>
@@ -141,19 +153,93 @@
     </header>
     <!-- Header Section End -->
 
-    <section class="categories">
+    <!-- Featured Section Begin -->
+    <section class="featured spad">
         <div class="container">
-            <div class="section-title">
-                <h2 class="text-center">X Company Ltd</h2>
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-12">
+                    <h2><?php echo $infor[1]; ?></h2>
+                </div>
+                <div class="col-lg-2 col-md-2 "><button>Join Us</button></div>
             </div>
-            <div class="row text-center p-10" style="background-color: white;">
-                <p>Welcome to x company the best company that link you with different schools in our country</p>
+            <br>
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8 text-center">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="<?php echo $infor[5]; ?>" alt="First slide">
+
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="img/ben.jpg" alt="Second slide">
+
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="img/Football.jpg" alt="Third slide">
+
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
+                    <!-- <div class="hero__item set-bg" data-setbg="img/art.jpg">
+                        <div class="hero__text text-center">
+                            <h2 style="color:#1b418a;">Art Work Gallery <br />100% By Rwandans</h2>
+                            <p style="color: white;"></p>
+                            <a href="shop-grid.html" class="primary-btn">SHOP NOW</a>
+                        </div>
+                    </div> -->
+                </div>
+
             </div>
-            <!-- <div class="product__pagination text-center">
-                <a href="teams.html" style="width: 2.5cm;">SEE ALL</a>
-            </div> -->
-        </div>
+            <br>
+            <p>
+                <h4>Welcome to <?php echo $infor[1] ?> </h4><br>
+                <?php echo $infor[2] ?> <br>
+                so we have different compans which include: <br>
+                <b>.Huye comapns</b><br>
+                <b>.Musanze comp</b>
+            </p>
+            <br>
+            <h3>Our Facilities:</h3><br>
+            <div class="row">
+                <div class="col-lg-3">Medincian</div>
+                <div class="col-lg-3">Agricalture</div>
+                <div class="col-lg-3">Media</div>
+                <div class="col-lg-3">Education</div>
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="col-lg-3">Medincian</div>
+                <div class="col-lg-3">Agricalture</div>
+                <div class="col-lg-3">Media</div>
+                <div class="col-lg-3">Education</div>
+            </div>
+
+            <br>
+
+            <center>
+                <a href="login.html"><button class="text-center">Join Us</button></a>
+            </center>
+
+
     </section>
+    <!-- Featured Section End -->
 
 
     <!-- Footer Section Begin -->
@@ -214,7 +300,9 @@
                 <div class="col-lg-12">
                     <div class="footer__copyright text-center">
                         Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved by <b>T&T IT
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved by <b>T&T IT
                             GROUP
                         </b>
                     </div>

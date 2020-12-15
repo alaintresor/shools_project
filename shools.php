@@ -1,3 +1,13 @@
+<?php
+
+//connting to database
+include "connection.php";
+
+//make query for displaying shools
+$query = "SELECT * FROM `shools`";
+$data = mysqli_query($connect, "$query");
+
+?>
 <!DOCTYPE html>
 <html lang="eng">
 
@@ -58,8 +68,8 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="shools.php">Shools</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="shools.html">Shools</a></li>
                 <li><a href="./contact.html">About Us</a></li>
                 <li><a href="./contact.html">Contact</a></li>
             </ul>
@@ -124,8 +134,8 @@
                     <div class="col-lg-6">
                         <nav class="header__menu">
                             <ul>
-                                <li class="active"><a href="#">Home</a></li>
-                                <li><a href="shools.php">Shools</a></li>
+                                <li><a href="index.html">Home</a></li>
+                                <li class="active"><a href="shools.html">Shools</a></li>
                                 <li><a href="./about.html">About Us</a></li>
                                 <li><a href="./contact.html">Contact</a></li>
                             </ul>
@@ -141,19 +151,56 @@
     </header>
     <!-- Header Section End -->
 
-    <section class="categories">
+    <!-- Featured Section Begin -->
+    <section class="featured spad">
         <div class="container">
-            <div class="section-title">
-                <h2 class="text-center">X Company Ltd</h2>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>Partener Shools</h2>
+                    </div>
+                    <div class="featured__controls">
+                        <ul>
+                            <li class="active" data-filter="*">All</li>
+                            <li data-filter=".paintings"> Business</li>
+                            <li data-filter=".photo">Medical</li>
+                            <li data-filter=".sculpture">Law</li>
+                            <li data-filter=".drawing">Techonolgy</li>
+                            <li data-filter=".print">Media</li>
+                            <li data-filter=".print">Art</li>
+                            <li data-filter=".print">Tourist</li>
+                            <li data-filter=".print">Agriculture</li>
+
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="row text-center p-10" style="background-color: white;">
-                <p>Welcome to x company the best company that link you with different schools in our country</p>
+            <div class="row featured__filter" style="background-color: white;">
+
+                <!-- displaying schools here -->
+                <?php
+                while ($row = mysqli_fetch_array($data)) {
+                    echo "
+            <div class='col-lg-3 col-md-4 col-sm-6 mix  photo'>
+                    <a href='login.php?id=$row[0]'>
+                        <div class='featured__item'>
+                            <div class='featured__item__pic set-bg' data-setbg='$row[5]'>
+
+                            </div>
+                            <div class='featured__item__text'>
+                                <h6>$row[1]</h6>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            ";
+                }
+                ?>
             </div>
-            <!-- <div class="product__pagination text-center">
-                <a href="teams.html" style="width: 2.5cm;">SEE ALL</a>
-            </div> -->
         </div>
     </section>
+    <!-- Featured Section End -->
 
 
     <!-- Footer Section Begin -->
@@ -214,7 +261,9 @@
                 <div class="col-lg-12">
                     <div class="footer__copyright text-center">
                         Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved by <b>T&T IT
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved by <b>T&T IT
                             GROUP
                         </b>
                     </div>
