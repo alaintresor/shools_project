@@ -42,34 +42,18 @@ $data = mysqli_query($connect, "$query");
     <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-            <a href="#"><img src="img/logo.png" alt=""></a>
-        </div>
-        <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-            </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
-        </div>
+       
+       
         <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="img/language.png" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Kinyarwanda</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
+          
             <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
+                <a href="login.php"><i class="fa fa-user"></i> Login</a>
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li class="active"><a href="shools.html">Shools</a></li>
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="shools.php">Shools</a></li>
                 <li><a href="./contact.html">About Us</a></li>
                 <li><a href="./contact.html">Contact</a></li>
             </ul>
@@ -78,22 +62,22 @@ $data = mysqli_query($connect, "$query");
 
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> t&t_it_group@info.rw</li>
+                <li><i class="fa fa-envelope"></i> yvetto@info.com</li>
                 <li></li>
             </ul>
         </div>
     </div>
-    <!-- Humberger End -->
+
 
     <!-- Header Section Begin -->
     <header class="header">
-        <div class="header__top">
+        <div class="header__top" style="background:white ">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__left">
                             <ul>
-                                <li><i class="fa fa-envelope"></i> t&t_it_group@info.rw</li>
+                                <li><i class="fa fa-envelope"></i> yvetto@info.com</li>
                                 <li></li>
                             </ul>
                         </div>
@@ -106,38 +90,30 @@ $data = mysqli_query($connect, "$query");
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
 
                             </div>
-                            <div class="header__top__right__language">
-                                <img src="img/language.png" alt="">
-                                <div>English</div>
-                                <span class="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a href="#">Kinyarwanda</a></li>
-                                    <li><a href="#">English</a></li>
-                                </ul>
-                            </div>
+                           
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                                <a href="login.php"><i class="fa fa-user"></i> Login</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="div_header mb-2">
+        <div class="div_header mb-2" style="background-color:darkgreen; height: 70px ">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="header__logo">
-                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                            
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <nav class="header__menu">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li class="active"><a href="shools.html">Shools</a></li>
-                                <li><a href="./about.html">About Us</a></li>
-                                <li><a href="./contact.html">Contact</a></li>
+                                <li class="active" style="color: white"><a href="#" style="color: white" >Home</a></li>
+                                <li ><a href="shools.php" style="color: white">Shools</a></li>
+                                <li><a href="./about.html" style="color: white">About Us</a></li>
+                                <li><a href="./contact.html" style="color: white">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -149,6 +125,7 @@ $data = mysqli_query($connect, "$query");
             </div>
         </div>
     </header>
+
     <!-- Header Section End -->
 
     <!-- Featured Section Begin -->
@@ -203,6 +180,7 @@ $data = mysqli_query($connect, "$query");
     <!-- Featured Section End -->
 
 
+
     <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
@@ -210,12 +188,11 @@ $data = mysqli_query($connect, "$query");
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
                         </div>
                         <ul>
                             <li>Address: kn 204 kigali</li>
                             <li>Phone: +250780591269</li>
-                            <li>Email: t&t_it_group@info.rw</li>
+                            <li>Email: yvetto@email.com</li>
                         </ul>
                     </div>
                 </div>
@@ -224,34 +201,26 @@ $data = mysqli_query($connect, "$query");
                         <h6>Useful Links</h6>
                         <ul>
                             <li><a href="#">About Us</a></li>
-                            <!-- <li><a href="#">About Our Shop</a></li>
-                            <li><a href="#">Secure Shopping</a></li>
-                            <li><a href="#">Delivery infomation</a></li> -->
+                           
                             <li><a href="#">Privacy Policy</a></li>
-                            <!-- <li><a href="#">Our Sitemap</a></li> -->
+                            
                         </ul>
                         <ul>
-                            <!-- <li><a href="#">Who We Are</a></li>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Projects</a></li> -->
+                           
                             <li><a href="#">Contact</a></li>
-                            <li><a href="#">Innovation</a></li>
-                            <!-- <li><a href="#">Testimonials</a></li> -->
+                       
+                     
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12">
                     <div class="footer__widget">
-                        <h6>Join Our Newsletter Now</h6>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
-                        <form action="#">
-                            <input type="text" placeholder="Enter your mail">
-                            <button type="submit" class="site-btn">Subscribe</button>
-                        </form>
+                      
+                      
                         <div class="footer__widget__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#" style="background: darkgreen;color: white"><i class="fa fa-facebook"></i></a>
+                            <a href="#" style="background: darkgreen;color: white"><i class="fa fa-instagram"></i></a>
+                            <a href="#" style="background: darkgreen;color: white"><i class="fa fa-twitter"></i></a>
 
                         </div>
                     </div>
@@ -261,10 +230,8 @@ $data = mysqli_query($connect, "$query");
                 <div class="col-lg-12">
                     <div class="footer__copyright text-center">
                         Copyright &copy;
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script> All rights reserved by <b>T&T IT
-                            GROUP
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved 2020 <b>
+                            
                         </b>
                     </div>
                 </div>
