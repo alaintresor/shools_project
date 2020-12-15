@@ -53,10 +53,10 @@ if (isset($_POST['login'])) {
       <div class="col-md-3 col-sm-3 col-xs-3 "></div>
       <div class="col-md-6 col-sm-6 col-xs-6 ">
         <center>
-          <h1>Student Page</h1>
+          <h1>Login to Apply</h1>
         </center>
         <form class="jumbotron" id="login" method="post" action="login.php">
-          <p class="text-center">Student Login</p>
+          <p class="text-center" style="background: darkgreen;color: white">Login to Apply</p>
           <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" class="form-control" placeholder="Enter username" required='' name="username">
@@ -66,11 +66,11 @@ if (isset($_POST['login'])) {
             <input type="password" class="form-control" required='' placeholder="Enter password" name="password">
           </div>
           <div class="form-group">
-            <input type="submit" class="btn btn-primary from-control" value="Login" name="login">
-            <a href='register.html' class="btn">not Register? Register</a>
+            <input type="submit" style="background: cyan;color: white" class="btn " value="Login" name="login">
+            <a href='signUp.php' class="btn">not Register? Register</a>
           </div>
-          <h5 class="text-right"><a href="#">Forgot <span class="text-danger">password?</span></a></h5>
-        </form>
+         <!--  <h5 class="text-right"><a href="#">Forgot <span class="text-danger">password?</span></a></h5>
+        </form> -->
       </div>
       <div class="col-md-3 col-sm-3 col-xs-3 "></div>
 

@@ -56,10 +56,10 @@ if (isset($_POST['signup'])) {
             <div class="col-md-3 col-sm-3 col-xs-3 "></div>
             <div class="col-md-6 col-sm-6 col-xs-6 ">
                 <center>
-                    <h1>Student Page</h1>
+                    <h1>Student SignUp</h1>
                 </center>
                 <form class="jumbotron" id="login" method="post" action="#">
-                    <p class="text-center">Student Sign Up</p>
+                    <p class="text-center" style="background: darkgreen;color:white">Sign Up</p>
                     <div class="form-group">
                         <label for="username">First Name:</label>
                         <input type="text" class="form-control" placeholder="Enter your firstname" required='' name="fname">
@@ -81,7 +81,7 @@ if (isset($_POST['signup'])) {
                         <input type="password" class="form-control" required='' id="cpwd" placeholder="Enter password again to confirm it" name="cpassword">
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-primary from-control" value="Sign Up" name="signup">
+                        <input type="submit" style="background: cyan;color: white" class="btn" value="Sign Up" name="signup">
                         <a href='login.php' class="btn">Already have Account?,Login here</a>
                     </div>
 
