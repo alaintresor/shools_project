@@ -1,3 +1,11 @@
+<?php
+include "connection.php";
+$userId = $_GET['id'];
+// $schoolId=$_GET['schoolId'];
+$query = "SELECT * FROM `student` WHERE `id`='$userId';";
+$data = mysqli_query($connect, "$query");
+$userInfor = mysqli_fetch_array($data);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,9 +43,9 @@
 
 
       <div style="display: flex;">
-        <h5 style="flex: 1;color: white;">Username</h5>
+        <h5 style="flex: 1;color: white;"><?php echo "$userInfor[1] $userInfor[2]"; ?></h5>
         <p style="flex: 1; " align="right">
-        <h5 style="color:white;">Logout</h5>
+          <h5 style="color:white;">Logout</h5>
         </p>
 
       </div>
@@ -47,7 +55,7 @@
   <br><br><br>
   <div class="container">
     <p>
-    <h4 class=" header-line">Application Form</h4>
+      <h4 class=" header-line">Application Form</h4>
     </p>
     <div class="panel panel-info">
       <div class="panel-heading">
