@@ -3,8 +3,8 @@
 //connting to database
 include "connection.php";
 
-//make query for displaying shools
-$query = "SELECT * FROM `shools`";
+//make query for displaying schools
+$query = "SELECT * FROM `schools` WHERE `status`='active'";
 $data = mysqli_query($connect, "$query");
 
 ?>
@@ -42,18 +42,18 @@ $data = mysqli_query($connect, "$query");
     <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
-       
-       
+
+
         <div class="humberger__menu__widget">
-          
+
             <div class="header__top__right__auth">
                 <a href="login.php"><i class="fa fa-user"></i> Login</a>
             </div>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="shools.php">Shools</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="#">Schools</a></li>
                 <li><a href="./contact.html">About Us</a></li>
                 <li><a href="./contact.html">Contact</a></li>
             </ul>
@@ -90,7 +90,7 @@ $data = mysqli_query($connect, "$query");
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
 
                             </div>
-                           
+
                             <div class="header__top__right__auth">
                                 <a href="login.php"><i class="fa fa-user"></i> Login</a>
                             </div>
@@ -104,14 +104,14 @@ $data = mysqli_query($connect, "$query");
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="header__logo">
-                            
+
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <nav class="header__menu">
                             <ul>
-                                <li class="active" style="color: white"><a href="#" style="color: white" >Home</a></li>
-                                <li ><a href="shools.php" style="color: white">Shools</a></li>
+                                <li class="active" style="color: white"><a href="index.html" style="color: white">Home</a></li>
+                                <li><a href="#" style="color: white">Schools</a></li>
                                 <li><a href="./about.html" style="color: white">About Us</a></li>
                                 <li><a href="./contact.html" style="color: white">Contact</a></li>
                             </ul>
@@ -134,7 +134,7 @@ $data = mysqli_query($connect, "$query");
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Partener Shools</h2>
+                        <h2>Partener Schools</h2>
                     </div>
                     <div class="featured__controls">
                         <ul>
@@ -161,7 +161,7 @@ $data = mysqli_query($connect, "$query");
             <div class='col-lg-3 col-md-4 col-sm-6 mix  photo'>
                     <a href='login.php?id=$row[0]'>
                         <div class='featured__item'>
-                            <div class='featured__item__pic set-bg' data-setbg='$row[5]'>
+                            <div class='featured__item__pic set-bg'  data-setbg='$row[5]'>
 
                             </div>
                             <div class='featured__item__text'>
@@ -201,22 +201,22 @@ $data = mysqli_query($connect, "$query");
                         <h6>Useful Links</h6>
                         <ul>
                             <li><a href="#">About Us</a></li>
-                           
+
                             <li><a href="#">Privacy Policy</a></li>
-                            
+
                         </ul>
                         <ul>
-                           
+
                             <li><a href="#">Contact</a></li>
-                       
-                     
+
+
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12">
                     <div class="footer__widget">
-                      
-                      
+
+
                         <div class="footer__widget__social">
                             <a href="#" style="background: darkgreen;color: white"><i class="fa fa-facebook"></i></a>
                             <a href="#" style="background: darkgreen;color: white"><i class="fa fa-instagram"></i></a>
@@ -230,8 +230,10 @@ $data = mysqli_query($connect, "$query");
                 <div class="col-lg-12">
                     <div class="footer__copyright text-center">
                         Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved 2020 <b>
-                            
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved 2020 <b>
+
                         </b>
                     </div>
                 </div>
