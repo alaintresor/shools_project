@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2020 at 09:48 PM
+-- Generation Time: Dec 17, 2020 at 09:10 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -25,27 +25,68 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shools`
+-- Table structure for table `applications`
 --
 
-CREATE TABLE `shools` (
+CREATE TABLE `applications` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(20) NOT NULL,
+  `school_id` varchar(20) NOT NULL,
+  `facility` varchar(40) NOT NULL,
+  `compuse` varchar(40) NOT NULL,
+  `isPayed` varchar(10) NOT NULL DEFAULT 'no',
+  `status` varchar(40) NOT NULL DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `applications`
+--
+
+INSERT INTO `applications` (`id`, `student_id`, `school_id`, `facility`, `compuse`, `isPayed`, `status`) VALUES
+(1, '2', '1', 'IT', 'Huye', 'yes', 'pending'),
+(2, '4', '1', 'Media', 'Musanze', 'yes', 'pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schools`
+--
+
+CREATE TABLE `schools` (
   `id` int(11) NOT NULL,
   `name` varchar(40) NOT NULL,
   `welcome_msg` varchar(4000) NOT NULL,
   `compuses` varchar(4000) NOT NULL,
   `facilities` varchar(4000) NOT NULL,
-  `img1` varchar(400) NOT NULL,
-  `img2` varchar(400) NOT NULL,
-  `img3` varchar(400) NOT NULL
+  `logo` varchar(400) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `status` varchar(40) NOT NULL DEFAULT 'inactive'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `shools`
+-- Dumping data for table `schools`
 --
 
-INSERT INTO `shools` (`id`, `name`, `welcome_msg`, `compuses`, `facilities`, `img1`, `img2`, `img3`) VALUES
-(1, 'University of Rwanda', 'UR is best University in the East African that will help you to make your dreams comes true', 'Huye,Musanze,Kigali', 'Business, IT', 'img/ur.jpg', '', ''),
-(2, 'ULK University', 'ULK University is all you need to make your world better place and make yourself home', 'Kigali,Nyanza', 'IT', 'img/ULK_Logo.png', '', '');
+INSERT INTO `schools` (`id`, `name`, `welcome_msg`, `compuses`, `facilities`, `logo`, `email`, `password`, `status`) VALUES
+(1, 'University of Rwanda', 'UR is best University in the East African that will help you to make your dreams comes true', 'Huye,Musanze,Kigali', 'Business, IT', 'img/ur.jpg', 'admin@ur.com', '1234', 'active'),
+(2, 'ULK University', 'ULK University is all you need to make your world better place and make yourself home', 'Kigali,Nyanza', 'IT', 'img/ULK_Logo.png', '', '', 'active'),
+(4, 'IPRC HUYE', 'welcome to IPRC HUYE', 'HUYE', 'IT,AGRICALTURE,ELECTORNIC', 'img/iprc.png', 'admin@iprchuye.com', 'huye', 'active'),
+(5, 'b', '', '', '', '', 'h@gmail.com', '12345', 'inactive'),
+(6, 'k', '', '', '', '', 'ov@k.com', '1234', 'inactive'),
+(7, 'kk', '', '', '', '', 'hhh@h', '1234', 'inactive'),
+(8, 'kk', '', '', '', '', 'hhh@h', '1234', 'inactive'),
+(9, 'kk', '', '', '', '', 'hhh@h', '1234', 'inactive'),
+(10, 'kk', '', '', '', '', 'hhh@h', '1234', 'inactive'),
+(11, 'rwando', '', '', '', '', 'rwando@gmail.com', '1234', 'inactive'),
+(12, 'rwando', '', '', '', '', 'rwando@gmail.com', '1234', 'inactive'),
+(13, '', '', '', '', '', 'admin@ur.com', '1234', 'inactive'),
+(14, '', '', '', '', '', 'admin@ur.com', '1234', 'inactive'),
+(15, '', '', '', '', '', 'admin@ur.com', '1234', 'inactive'),
+(16, '', '', '', '', '', 'admin@iprchuye.com', 'huye', 'inactive'),
+(17, '', '', '', '', '', 'admin@iprchuye.com', 'huye', 'inactive'),
+(18, '', '', '', '', '', 'admin@iprchuye.com', 'huye', 'inactive'),
+(19, '', '', '', '', '', 'admin@iprchuye.com', 'huye', 'inactive');
 
 -- --------------------------------------------------------
 
@@ -68,16 +109,23 @@ CREATE TABLE `student` (
 INSERT INTO `student` (`id`, `fname`, `lname`, `username`, `password`) VALUES
 (1, '0', '0', '0', '0'),
 (2, 'kamana', 'Eric', 'kamana', '12345'),
-(3, 'kamana', 'Eric', 'kamana', '1234');
+(3, 'kamana', 'Eric', 'kamana', '1234'),
+(4, 'mugisha', 'peter', 'peter', '1234');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `shools`
+-- Indexes for table `applications`
 --
-ALTER TABLE `shools`
+ALTER TABLE `applications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `schools`
+--
+ALTER TABLE `schools`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -91,16 +139,22 @@ ALTER TABLE `student`
 --
 
 --
--- AUTO_INCREMENT for table `shools`
+-- AUTO_INCREMENT for table `applications`
 --
-ALTER TABLE `shools`
+ALTER TABLE `applications`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `schools`
+--
+ALTER TABLE `schools`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
