@@ -6,7 +6,7 @@ if (!isset($_SESSION['schoolId'])) {
 include "../connection.php";
 $id = $_SESSION['schoolId'];
 $choolName = $_SESSION['schoolname'];
-$query = "SELECT fname,lname,applications.facility,applications.compuse FROM student,applications,schools WHERE student.id=applications.student_id AND applications.school_id=schools.id AND schools.id='$id'";
+$query = "SELECT fname,lname,applications.facility,applications.compuse FROM student,applications,schools WHERE student.id=applications.student_id AND applications.school_id=schools.id AND schools.id='$id' AND applications.isPayed='yes' AND applications.status='pending'";
 $data = mysqli_query($connect, "$query");
 
 ?>
@@ -162,10 +162,10 @@ $data = mysqli_query($connect, "$query");
                             <a href="#"><i class="fa fa-users fa-fw"></i> Students<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li class="active">
-                                    <a href="flot.html">New Application</a>
+                                    <a href="#">New Application</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Allowed Students</a>
+                                    <a href="allowed_students.php">Allowed Students</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

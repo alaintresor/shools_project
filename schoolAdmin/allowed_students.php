@@ -6,9 +6,9 @@ if (!isset($_SESSION['schoolId'])) {
 include "../connection.php";
 $id = $_SESSION['schoolId'];
 $choolName = $_SESSION['schoolname'];
-$query = "SELECT * FROM `schools` WHERE `id`='$id'";
+$query = "SELECT fname,lname,applications.facility,applications.compuse FROM student,applications,schools WHERE student.id=applications.student_id AND applications.school_id=schools.id AND schools.id='$id' AND applications.isPayed='yes' AND applications.status='yes'";
 $data = mysqli_query($connect, "$query");
-$schoolInfor = mysqli_fetch_array($data);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +27,12 @@ $schoolInfor = mysqli_fetch_array($data);
 
     <!-- MetisMenu CSS -->
     <link href="css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="css/dataTables/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/startmin.css" rel="stylesheet">
@@ -60,7 +66,7 @@ $schoolInfor = mysqli_fetch_array($data);
             </button>
 
             <ul class="nav navbar-nav navbar-left navbar-top-links">
-                <li><a href="../index.htmt"><i class="fa fa-home fa-fw"></i> Website</a></li>
+                <li><a href="../index.html"><i class="fa fa-home fa-fw"></i> Website</a></li>
             </ul>
 
             <ul class="nav navbar-right navbar-top-links">
@@ -120,10 +126,10 @@ $schoolInfor = mysqli_fetch_array($data);
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <?php echo $choolName; ?> <b class="caret"></b>
+                        <i class="fa fa-user fa-fw"></i><?php echo $choolName; ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
@@ -147,29 +153,25 @@ $schoolInfor = mysqli_fetch_array($data);
                                     </button>
                                 </span>
                             </div>
+                            <!-- /input-group -->
                         </li>
                         <li>
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="#"><i class="fa fa-users fa-fw"></i> Students<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
+                                <li class="active">
                                     <a href="new_application.php">New Application</a>
                                 </li>
                                 <li>
-                                    <a href="allowed_students.php">Allowed Students</a>
+                                    <a href="#">Allowed Students</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+
                         <!-- <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
-                        <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -190,11 +192,11 @@ $schoolInfor = mysqli_fetch_array($data);
                                 <li>
                                     <a href="grid.html">Grid</a>
                                 </li>
-                            </ul> -->
-                        <!-- /.nav-second-level -->
+                            </ul>
+                            <!-- /.nav-second-level -->
                         <!-- </li> -->
                         <!-- <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Report<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="#">Second Level Item</a>
@@ -219,7 +221,22 @@ $schoolInfor = mysqli_fetch_array($data);
                                         </li>
                                     </ul>
                                     <!-- /.nav-third-level -->
-                        </li>
+                        <!-- </li>
+                    </ul> -->
+                        <!-- /.nav-second-level -->
+                        <!-- </li> -->
+                        <!-- <li>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="blank.html">Blank Page</a>
+                                </li>
+                                <li>
+                                    <a href="login.html">Login Page</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        <!-- </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -231,7 +248,7 @@ $schoolInfor = mysqli_fetch_array($data);
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Profile</h1>
+                        <h1 class="page-header">Allowed Students</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -240,111 +257,40 @@ $schoolInfor = mysqli_fetch_array($data);
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Basic Form Elements
+                                Students Records
                             </div>
+                            <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <form role="form" method="POST" action="profileHanlder.php" enctype='multipart/form-data'>
-                                            <div class="form-group">
-                                                <label>School Logo</label>
-                                                <input type="file" name="file">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Full School Name</label>
-                                                <input class="form-control" name="name" value="<?php echo $schoolInfor[1] ?>">
-                                                <p class="help-block">Example block-level help text here.</p>
-                                            </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th>Firstname</th>
+                                                <th>Lastname</th>
+                                                <th>Facility</th>
+                                                <th>Compuse</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            while ($row = mysqli_fetch_array($data)) {
+                                                echo "
+                                                 <tr class='odd gradeX'>
+                                                <td>$row[0]</td>
+                                                <td>$row[1]</td>
+                                                <td>$row[2]</td>
+                                                <td class='center'>$row[3]</td>
+                                               
+                                            </tr>
+                                                 ";
+                                            }
+                                            ?>
 
-                                            <div class="form-group">
-                                                <label>Welcome Message</label>
-                                                <textarea class="form-control" name="message" rows="3"><?php echo $schoolInfor[2] ?></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>facilities</label>
-                                                <textarea class="form-control" rows="3" placeholder="example:IT,Agricalture,...." name="fac"><?php echo $schoolInfor[4] ?></textarea>
-                                                <p class="help-block">Make sure you seprect it with ,</p>
-                                            </div>
 
-                                            <div class="form-group">
-                                                <label>Compuses</label>
-                                                <textarea class="form-control" rows="3" name="compuse"><?php echo $schoolInfor[3] ?></textarea>
-                                            </div>
-
-                                            <button type="submit" class="btn btn-outline btn-primary" name="done">Save Change</button>
-                                            <a href="index.php"><button type="button" class="btn btn-outline btn-warning">Cancle</button></a>
-                                        </form>
-                                    </div>
-                                    <!-- /.col-lg-6 (nested) -->
-                                    <!-- <div class="col-lg-6">
-                                        <h1>Disabled Form States</h1>
-                                        <form role="form">
-                                            <fieldset disabled>
-                                                <div class="form-group">
-                                                    <label for="disabledSelect">Disabled input</label>
-                                                    <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="disabledSelect">Disabled select menu</label>
-                                                    <select id="disabledSelect" class="form-control">
-                                                        <option>Disabled select</option>
-                                                    </select>
-                                                </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox">Disabled Checkbox
-                                                    </label>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Disabled Button</button>
-                                            </fieldset>
-                                        </form>
-                                        <h1>Form Validation States</h1>
-                                        <form role="form">
-                                            <div class="form-group has-success">
-                                                <label class="control-label" for="inputSuccess">Input with success</label>
-                                                <input type="text" class="form-control" id="inputSuccess">
-                                            </div>
-                                            <div class="form-group has-warning">
-                                                <label class="control-label" for="inputWarning">Input with warning</label>
-                                                <input type="text" class="form-control" id="inputWarning">
-                                            </div>
-                                            <div class="form-group has-error">
-                                                <label class="control-label" for="inputError">Input with error</label>
-                                                <input type="text" class="form-control" id="inputError">
-                                            </div>
-                                        </form>
-                                        <h1>Input Groups</h1>
-                                        <form role="form">
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon">@</span>
-                                                <input type="text" class="form-control" placeholder="Username">
-                                            </div>
-                                            <div class="form-group input-group">
-                                                <input type="text" class="form-control">
-                                                <span class="input-group-addon">.00</span>
-                                            </div>
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon"><i class="fa fa-eur"></i>
-                                                </span>
-                                                <input type="text" class="form-control" placeholder="Font Awesome Icon">
-                                            </div>
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon">$</span>
-                                                <input type="text" class="form-control">
-                                                <span class="input-group-addon">.00</span>
-                                            </div>
-                                            <div class="form-group input-group">
-                                                <input type="text" class="form-control">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i>
-                                                    </button>
-                                                </span>
-                                            </div>
-                                        </form>
-                                    </div> -->
-                                    <!-- /.col-lg-6 (nested) -->
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <!-- /.row (nested) -->
+                                <!-- /.table-responsive -->
                             </div>
                             <!-- /.panel-body -->
                         </div>
@@ -352,6 +298,9 @@ $schoolInfor = mysqli_fetch_array($data);
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
+                <!-- /.row -->
+
+
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
@@ -370,8 +319,21 @@ $schoolInfor = mysqli_fetch_array($data);
     <!-- Metis Menu Plugin JavaScript -->
     <script src="js/metisMenu.min.js"></script>
 
+    <!-- DataTables JavaScript -->
+    <script src="js/dataTables/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables/dataTables.bootstrap.min.js"></script>
+
     <!-- Custom Theme JavaScript -->
     <script src="js/startmin.js"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+        $(document).ready(function() {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+    </script>
 
 </body>
 

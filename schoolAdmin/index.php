@@ -155,7 +155,7 @@ $choolName = $_SESSION['schoolname'];
                                     <a href="new_application.php">New Application</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Allowed Students</a>
+                                    <a href="allowed_students.php">Allowed Students</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
