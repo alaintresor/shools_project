@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2020 at 09:10 PM
+-- Generation Time: Dec 20, 2020 at 11:03 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -31,9 +31,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `applications` (
   `id` int(11) NOT NULL,
   `student_id` varchar(20) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `birth_date` varchar(40) NOT NULL,
+  `father` varchar(40) NOT NULL,
+  `mother` varchar(40) NOT NULL,
+  `ID_nber` varchar(40) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `phone` varchar(40) NOT NULL,
   `school_id` varchar(20) NOT NULL,
   `facility` varchar(40) NOT NULL,
   `compuse` varchar(40) NOT NULL,
+  `photo` varchar(400) NOT NULL,
+  `ID_copy` varchar(400) NOT NULL,
+  `diploma` varchar(400) NOT NULL,
   `isPayed` varchar(10) NOT NULL DEFAULT 'no',
   `status` varchar(40) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -42,9 +52,8 @@ CREATE TABLE `applications` (
 -- Dumping data for table `applications`
 --
 
-INSERT INTO `applications` (`id`, `student_id`, `school_id`, `facility`, `compuse`, `isPayed`, `status`) VALUES
-(1, '2', '1', 'IT', 'Huye', 'yes', 'pending'),
-(2, '4', '1', 'Media', 'Musanze', 'yes', 'pending');
+INSERT INTO `applications` (`id`, `student_id`, `gender`, `birth_date`, `father`, `mother`, `ID_nber`, `email`, `phone`, `school_id`, `facility`, `compuse`, `photo`, `ID_copy`, `diploma`, `isPayed`, `status`) VALUES
+(1, '3', 'M', '2020-12-20', 'Mugisha Peter', 'Mukanama Alice', '1199909380280939', 'kamana@gmail.com', '0787683568', '4', 'IT', 'Musanze', 'img/Braids-For-Long-Hair-44-650x650.jpg', 'files/B201204153740RX8Z (1).pdf', 'files/B201204153740RX8Z.pdf', 'yes', 'yes');
 
 -- --------------------------------------------------------
 
@@ -72,21 +81,11 @@ INSERT INTO `schools` (`id`, `name`, `welcome_msg`, `compuses`, `facilities`, `l
 (1, 'University of Rwanda', 'UR is best University in the East African that will help you to make your dreams comes true', 'Huye,Musanze,Kigali', 'Business, IT', 'img/ur.jpg', 'admin@ur.com', '1234', 'active'),
 (2, 'ULK University', 'ULK University is all you need to make your world better place and make yourself home', 'Kigali,Nyanza', 'IT', 'img/ULK_Logo.png', '', '', 'active'),
 (4, 'IPRC HUYE', 'welcome to IPRC HUYE', 'HUYE', 'IT,AGRICALTURE,ELECTORNIC', 'img/iprc.png', 'admin@iprchuye.com', 'huye', 'active'),
-(5, 'b', '', '', '', '', 'h@gmail.com', '12345', 'inactive'),
-(6, 'k', '', '', '', '', 'ov@k.com', '1234', 'inactive'),
-(7, 'kk', '', '', '', '', 'hhh@h', '1234', 'inactive'),
-(8, 'kk', '', '', '', '', 'hhh@h', '1234', 'inactive'),
-(9, 'kk', '', '', '', '', 'hhh@h', '1234', 'inactive'),
-(10, 'kk', '', '', '', '', 'hhh@h', '1234', 'inactive'),
-(11, 'rwando', '', '', '', '', 'rwando@gmail.com', '1234', 'inactive'),
-(12, 'rwando', '', '', '', '', 'rwando@gmail.com', '1234', 'inactive'),
-(13, '', '', '', '', '', 'admin@ur.com', '1234', 'inactive'),
-(14, '', '', '', '', '', 'admin@ur.com', '1234', 'inactive'),
-(15, '', '', '', '', '', 'admin@ur.com', '1234', 'inactive'),
-(16, '', '', '', '', '', 'admin@iprchuye.com', 'huye', 'inactive'),
-(17, '', '', '', '', '', 'admin@iprchuye.com', 'huye', 'inactive'),
-(18, '', '', '', '', '', 'admin@iprchuye.com', 'huye', 'inactive'),
-(19, '', '', '', '', '', 'admin@iprchuye.com', 'huye', 'inactive');
+(23, '', '', '', '', '', 'admin@ur.com', '1234', 'inactive'),
+(24, '', '', '', '', '', 'admin@ur.com', '1234', 'inactive'),
+(25, '', '', '', '', '', 'admin@ur.com', '1234', 'inactive'),
+(26, '', '', '', '', '', 'admin@iprchuye.com', '1234', 'inactive'),
+(27, '', '', '', '', '', 'admin@iprchuye.com', 'huye', 'inactive');
 
 -- --------------------------------------------------------
 
@@ -142,13 +141,13 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `schools`
 --
 ALTER TABLE `schools`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `student`
