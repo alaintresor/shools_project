@@ -1,14 +1,19 @@
 <?php
 session_start();
-if (!isset($_SESSION['schoolId'])) {
+if (!isset($_SESSION['userId'])) {
     header("location:../schools.php");
 }
 include "../connection.php";
-$id = $_SESSION['schoolId'];
-$choolName = $_SESSION['schoolname'];
-$query = "SELECT * FROM `schools` WHERE `id`='$id'";
+$id = $_SESSION['userId'];
+$username = $_SESSION['username'];
+
+//get all user Informations
+$sql = "SELECT * FROM `student` WHERE `id`='$id'";
+$userInfor = mysqli_fetch_array(mysqli_query($connect, "$sql"));
+//get all available schools
+$query = "SELECT * FROM `schools` WHERE `status`='active'";
 $data = mysqli_query($connect, "$query");
-$schoolInfor = mysqli_fetch_array($data);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +54,7 @@ $schoolInfor = mysqli_fetch_array($data);
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">School Admin</a>
+                <a class="navbar-brand" href="index.html">Student</a>
             </div>
 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -60,7 +65,7 @@ $schoolInfor = mysqli_fetch_array($data);
             </button>
 
             <ul class="nav navbar-nav navbar-left navbar-top-links">
-                <li><a href="../index.htmt"><i class="fa fa-home fa-fw"></i> Website</a></li>
+                <li><a href="../index.html"><i class="fa fa-home fa-fw"></i> Website</a></li>
             </ul>
 
             <ul class="nav navbar-right navbar-top-links">
@@ -120,7 +125,7 @@ $schoolInfor = mysqli_fetch_array($data);
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <?php echo $choolName; ?> <b class="caret"></b>
+                        <i class="fa fa-user fa-fw"></i> <?php echo $username; ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -158,12 +163,11 @@ $schoolInfor = mysqli_fetch_array($data);
                                     <a href="new_application.php">New Application</a>
                                 </li>
                                 <li>
-                                    <a href="allowed_students.php">Allowed Students</a>
+                                    <a href="my_applications.php">My Applications</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-
                         </li>
                     </ul>
                 </div>
@@ -176,7 +180,7 @@ $schoolInfor = mysqli_fetch_array($data);
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Profile</h1>
+                        <h1 class="page-header">Make Application</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -185,44 +189,125 @@ $schoolInfor = mysqli_fetch_array($data);
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Basic Form Elements
+                                Application Form
                             </div>
                             <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <form role="form" method="POST" action="profileHanlder.php" enctype='multipart/form-data'>
+                                <form role="form" method="POST" action="submit_application.php" enctype='multipart/form-data'>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <p style="color: blue;">Personal Informations</p>
                                             <div class="form-group">
-                                                <label>School Logo</label>
-                                                <input type="file" name="file">
+                                                <label>Firstname</label>
+                                                <input type="disable" class="form-control" name="fname" value="<?php echo $userInfor[1] ?>" placeholder="Enter Firstname">
+
                                             </div>
                                             <div class="form-group">
-                                                <label>Full School Name</label>
-                                                <input class="form-control" name="name" value="<?php echo $schoolInfor[1] ?>">
-                                                <p class="help-block">Example block-level help text here.</p>
+                                                <label>Lastname</label>
+                                                <input class="form-control" name="lname" value="<?php echo $userInfor[2] ?>" placeholder="Enter lastname">
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Gender</label>
+                                                <select name="gender" class="form-control">
+                                                    <option value="">....</option>
+                                                    <option value="M">Male</option>
+                                                    <option value="F">Female</option>
+                                                </select>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Welcome Message</label>
-                                                <textarea class="form-control" name="message" rows="3"><?php echo $schoolInfor[2] ?></textarea>
+                                                <label>Birth Date</label>
+                                                <input type="date" class="form-control" name="bd" value="" required="">
+
                                             </div>
                                             <div class="form-group">
-                                                <label>facilities</label>
-                                                <textarea class="form-control" rows="3" placeholder="example:IT,Agricalture,...." name="fac"><?php echo $schoolInfor[4] ?></textarea>
-                                                <p class="help-block">Make sure you seprect it with ,</p>
+                                                <label>Father names</label>
+                                                <input type="text" class="form-control" name="father" value="" required="">
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Mother names</label>
+                                                <input type="text" class="form-control" name="mother" value="" required="">
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>ID number</label>
+                                                <input type="text" class="form-control" name="idNber" value="" required="" maxlength="16" minlength="16">
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Email </label>
+                                                <input type="email" class="form-control" name="email" value="<?php echo $userInfor[3] ?>" required="">
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Phone number</label>
+                                                <input type="text" class="form-control" name="phone" value="" required="">
+
+                                            </div>
+
+                                        </div>
+                                        <!-- /.col-lg-6 (nested) -->
+                                        <div class="col-lg-6">
+                                            <p style="color: blue;">School Informations</p>
+                                            <div class="form-group">
+                                                <label>School</label>
+                                                <select name="school" class="form-control" id="school" onchange="facilities()">
+                                                    <option value="">....</option>
+                                                    <?php
+                                                    while ($row = mysqli_fetch_array($data)) {
+                                                        echo "<option value='$row[0]'>$row[1]<?/option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Facility</label>
+                                                <select name="fac" class="form-control" id="fact">
+                                                    <option value="">....</option>
+
+                                                </select>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Compuses</label>
-                                                <textarea class="form-control" rows="3" name="compuse"><?php echo $schoolInfor[3] ?></textarea>
+                                                <label>Compuse</label>
+                                                <select name="compuse" class="form-control">
+                                                    <option value="">....</option>
+                                                    <option>Huye</option>
+                                                    <option>Musanze</option>
+                                                </select>
+                                            </div><br><br>
+
+                                            <p style="color: blue;">Required Documents</p>
+
+
+                                            <div class="form-group">
+                                                <label>Photo passport</label>
+                                                <input type="file" class="form-control" name="photo" required>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>ID copy</label>
+                                                <input type="file" class="form-control" name="ID" required>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Diplome</label>
+                                                <input type="file" class="form-control" name="diplome" required>
+
                                             </div>
 
-                                            <button type="submit" class="btn btn-outline btn-primary" name="done">Save Change</button>
-                                            <a href="index.php"><button type="button" class="btn btn-outline btn-warning">Cancle</button></a>
-                                        </form>
+
+
+
+                                        </div>
+                                        <!-- /.col-lg-6 (nested) -->
                                     </div>
-
-                                </div>
-                                <!-- /.row (nested) -->
+                                    <button type="submit" class="btn btn-outline btn-primary" name="done">Submit</button>
+                                    <a href="index.php"><button type="button" class="btn btn-outline btn-warning">Cancle</button></a>
+                                    <!-- /.row (nested) -->
+                                </form>
+                                <!-- /.Form  -->
                             </div>
                             <!-- /.panel-body -->
                         </div>
@@ -250,6 +335,27 @@ $schoolInfor = mysqli_fetch_array($data);
 
     <!-- Custom Theme JavaScript -->
     <script src="js/startmin.js"></script>
+
+    <script>
+        //get facilities for spicific school
+        const facilities = () => {
+            let item = $("#school").val();
+
+            $.ajax({
+                url: "getFacilities.php",
+                method: "POST",
+                data: {
+                    item
+                },
+                success: function(data) {
+
+                    $("#fact").html(data);
+
+                }
+            })
+
+        }
+    </script>
 
 </body>
 

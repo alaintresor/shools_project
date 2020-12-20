@@ -1,11 +1,11 @@
 <?php
 session_start();
-if (!isset($_SESSION['schoolId'])) {
-    header("location:../index.php.php");
+if (!isset($_SESSION['userId'])) {
+    header("location:../login.php");
 }
 include "../connection.php";
-$id = $_SESSION['schoolId'];
-$choolName = $_SESSION['schoolname'];
+$id = $_SESSION['userId'];
+$username = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +46,7 @@ $choolName = $_SESSION['schoolname'];
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">School Admin</a>
+                <a class="navbar-brand" href="index.html">Student</a>
             </div>
 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -117,7 +117,7 @@ $choolName = $_SESSION['schoolname'];
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <?php echo $choolName; ?> <b class="caret"></b>
+                        <i class="fa fa-user fa-fw"></i> <?php echo $username; ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -149,13 +149,13 @@ $choolName = $_SESSION['schoolname'];
                             <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> Students<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> Application<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="new_application.php">New Application</a>
                                 </li>
                                 <li>
-                                    <a href="allowed_students.php">Allowed Students</a>
+                                    <a href="my_applications.php">My Applications</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

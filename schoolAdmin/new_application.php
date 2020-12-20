@@ -6,7 +6,7 @@ if (!isset($_SESSION['schoolId'])) {
 include "../connection.php";
 $id = $_SESSION['schoolId'];
 $choolName = $_SESSION['schoolname'];
-$query = "SELECT fname,lname,applications.facility,applications.compuse FROM student,applications,schools WHERE student.id=applications.student_id AND applications.school_id=schools.id AND schools.id='$id' AND applications.isPayed='yes' AND applications.status='pending'";
+$query = "SELECT applications.id,fname,lname,applications.facility,applications.compuse FROM student,applications,schools WHERE student.id=applications.student_id AND applications.school_id=schools.id AND schools.id='$id' AND applications.isPayed='yes' AND applications.status='pending'";
 $data = mysqli_query($connect, "$query");
 
 ?>
@@ -55,7 +55,7 @@ $data = mysqli_query($connect, "$query");
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Startmin</a>
+                <a class="navbar-brand" href="index.html">School Admin</a>
             </div>
 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -170,73 +170,6 @@ $data = mysqli_query($connect, "$query");
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-
-                        <!-- <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        <!-- </li> -->
-                        <!-- <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Report<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                        <!-- </li>
-                    </ul> -->
-                        <!-- /.nav-second-level -->
-                        <!-- </li> -->
-                        <!-- <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        <!-- </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -269,6 +202,7 @@ $data = mysqli_query($connect, "$query");
                                                 <th>Lastname</th>
                                                 <th>Facility</th>
                                                 <th>Compuse</th>
+                                                <td>Options</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -276,11 +210,11 @@ $data = mysqli_query($connect, "$query");
                                             while ($row = mysqli_fetch_array($data)) {
                                                 echo "
                                                  <tr class='odd gradeX'>
-                                                <td>$row[0]</td>
                                                 <td>$row[1]</td>
                                                 <td>$row[2]</td>
-                                                <td class='center'>$row[3]</td>
-                                               
+                                                <td>$row[3]</td>
+                                                <td class='center'>$row[4]</td>
+                                                <td class='center'><a href='view.php?id=$row[0]'>View</a></td>
                                             </tr>
                                                  ";
                                             }

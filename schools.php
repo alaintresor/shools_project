@@ -1,5 +1,4 @@
 <?php
-
 //connting to database
 include "connection.php";
 

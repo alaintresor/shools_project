@@ -1,12 +1,12 @@
 <?php
 session_start();
-if (!isset($_SESSION['schoolId'])) {
+if (!isset($_SESSION['userId'])) {
     header("location:../schools.php");
 }
 include "../connection.php";
-$id = $_SESSION['schoolId'];
-$choolName = $_SESSION['schoolname'];
-$query = "SELECT applications.id,fname,lname,applications.facility,applications.compuse FROM student,applications,schools WHERE student.id=applications.student_id AND applications.school_id=schools.id AND schools.id='$id' AND applications.isPayed='yes' AND applications.status='yes'";
+$id = $_SESSION['userId'];
+$username = $_SESSION['username'];
+$query = "SELECT schools.name,applications.facility,applications.compuse,isPayed,applications.status FROM schools,applications WHERE schools.id=school_id AND student_id='$id'";
 $data = mysqli_query($connect, "$query");
 
 ?>
@@ -39,13 +39,6 @@ $data = mysqli_query($connect, "$query");
 
     <!-- Custom Fonts -->
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
 </head>
 
 <body>
@@ -55,7 +48,7 @@ $data = mysqli_query($connect, "$query");
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">School Admin</a>
+                <a class="navbar-brand" href="index.html">Student</a>
             </div>
 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -126,7 +119,7 @@ $data = mysqli_query($connect, "$query");
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i><?php echo $choolName; ?> <b class="caret"></b>
+                        <i class="fa fa-user fa-fw"></i><?php echo $username; ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -159,15 +152,18 @@ $data = mysqli_query($connect, "$query");
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li class="active">
-                            <a href="#"><i class="fa fa-users fa-fw"></i> Students<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-users fa-fw"></i> Applications<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li class="active">
+                                <li>
                                     <a href="new_application.php">New Application</a>
                                 </li>
-                                <li>
-                                    <a href="#">Allowed Students</a>
+                                <li class="active">
+                                    <a href="#">My Applications</a>
                                 </li>
                             </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
 
                     </ul>
                 </div>
@@ -180,7 +176,7 @@ $data = mysqli_query($connect, "$query");
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Allowed Students</h1>
+                        <h1 class="page-header">My Applications</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -197,11 +193,11 @@ $data = mysqli_query($connect, "$query");
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>Firstname</th>
-                                                <th>Lastname</th>
+                                                <th>School</th>
                                                 <th>Facility</th>
                                                 <th>Compuse</th>
-                                                <th>Option</th>
+                                                <th>IsPayed</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -209,11 +205,12 @@ $data = mysqli_query($connect, "$query");
                                             while ($row = mysqli_fetch_array($data)) {
                                                 echo "
                                                  <tr class='odd gradeX'>
+                                                <td>$row[0]</td>
                                                 <td>$row[1]</td>
                                                 <td>$row[2]</td>
-                                                <td>$row[3]</td>
+                                                <td class='center'>$row[3]</td>
                                                 <td class='center'>$row[4]</td>
-                                                <td class='center'><a href='view_allowed.php?id=$row[0]'>View</a></td>
+                                                
                                             </tr>
                                                  ";
                                             }

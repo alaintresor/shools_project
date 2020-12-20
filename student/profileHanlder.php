@@ -13,7 +13,6 @@ if (isset($_POST["done"])) {
     $compuse = $_POST['compuse'];
 
     $img = "img/" . $_FILES['file']['name'];
-    $imgName = $_FILES['file']['name'];
     $target_dir = "../../img/";
     $target_file = $target_dir . basename($_FILES["file"]["name"]);
 
@@ -31,7 +30,7 @@ if (isset($_POST["done"])) {
         $done = mysqli_query($connect, "$query");
 
         if ($done) {
-            move_uploaded_file($_FILES['file']['tmp_name'], $target_dir . $imgName);
+            move_uploaded_file($_FILES['file']['tmp_name'], $target_dir . $name);
             echo "<script>alert('Profile updated');window.open('index.php','_self');</script>";
         } else {
             echo "Error:" . mysqli_error($connect);

@@ -1,13 +1,11 @@
 <?php
+session_start();
 include "connection.php";
 if (isset($_GET['id'])) {
-  $schoolId = $_GET['id'];
-  $link = "signUp.php?id=$schoolId";
-  $postTo = "login.php?id=$schoolId";
-} else {
-  $link = "signUp.php";
-  $postTo = "login.php";
+
+  $_SESSION['schoolId'] = $_GET['id'];
 }
+
 if (isset($_POST['login'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
@@ -15,12 +13,10 @@ if (isset($_POST['login'])) {
   $data = mysqli_query($connect, "$query");
   if (mysqli_num_rows($data)) {
     $row = mysqli_fetch_array($data);
-    if (isset($_GET['id'])) {
-      header("location:student.php?id=$row[0]&schoolId=$schoolId");
-      echo $link;
-    } else {
-      header("location:student.php?id=$row[0]");
-    }
+
+    $_SESSION['userId'] = $row[0];
+    $_SESSION['username'] = "$row[1] $row[2]";
+    header("location:student/index.php");
   } else {
     echo "<script>alert('Wrong username or password')</script>";
   }
@@ -65,7 +61,7 @@ if (isset($_POST['login'])) {
         <center>
           <h1>Login to Apply</h1>
         </center>
-        <form class="jumbotron" id="login" method="post" action="<?php echo $postTo; ?>">
+        <form class="jumbotron" id="login" method="post" action="#">
           <p class="text-center" style="background: darkgreen;color: white">Login to Apply</p>
           <div class="form-group">
             <label for="username">Username:</label>
@@ -77,15 +73,12 @@ if (isset($_POST['login'])) {
           </div>
           <div class="form-group">
             <input type="submit" style="background: cyan;color: white" class="btn " value="Login" name="login">
-            <a href="<?php echo $link; ?>" class="btn">not Register? Register</a>
+            Not Register? ,<a href="signUp.php" class="btn">Register here</a>
           </div>
-          <!--  <h5 class="text-right"><a href="#">Forgot <span class="text-danger">password?</span></a></h5>
-        </form> -->
+        </form>
       </div>
       <div class="col-md-3 col-sm-3 col-xs-3 "></div>
-
     </div>
-    <!--  <h4 class="text-success text-center"><a href="singup.html"><b>Create new account</b></a></h4> -->
   </div>
 </body>
 
