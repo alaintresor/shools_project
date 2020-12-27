@@ -34,9 +34,9 @@ $data = mysqli_query($connect, "$query");
 
 <body>
     <!-- Page Preloder -->
-    <div id="preloder">
+    <!--  <div id="preloder">
         <div class="loader"></div>
-    </div>
+    </div> -->
 
     <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
@@ -54,7 +54,7 @@ $data = mysqli_query($connect, "$query");
                 <li><a href="index.html">Home</a></li>
                 <li class="active"><a href="#">Schools</a></li>
                 <li><a href="./contact.html">About Us</a></li>
-                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -138,33 +138,34 @@ $data = mysqli_query($connect, "$query");
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".paintings"> Business</li>
+                            <!-- <li data-filter=".paintings"> Business</li>
                             <li data-filter=".photo">Medical</li>
                             <li data-filter=".sculpture">Law</li>
                             <li data-filter=".drawing">Techonolgy</li>
                             <li data-filter=".print">Media</li>
                             <li data-filter=".print">Art</li>
                             <li data-filter=".print">Tourist</li>
-                            <li data-filter=".print">Agriculture</li>
+                            <li data-filter=".print">Agriculture</li> -->
 
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="row featured__filter" style="background-color: white;">
+            <div class="row featured__filter" style="background-color: white; ">
 
                 <!-- displaying schools here -->
                 <?php
                 while ($row = mysqli_fetch_array($data)) {
                     echo "
-            <div class='col-lg-3 col-md-4 col-sm-6 mix  photo'>
+            <div class='col-lg-3 col-md-4 col-sm-6 mix  photo' style='background-color: white; border: 2px solid cyan'>
                     <a href='login.php?id=$row[0]'>
                         <div class='featured__item'>
-                            <div class='featured__item__pic set-bg'  data-setbg='$row[5]'>
+                            <div class='featured__item__pic set-bg'  data-setbg='$row[8]'>
 
                             </div>
                             <div class='featured__item__text'>
-                                <h6>$row[1]</h6>
+                             <h3>$row[1]</h3>
+                                <h6>$row[2]</h6>
 
                             </div>
                         </div>

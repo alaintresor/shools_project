@@ -30,13 +30,6 @@ $username = $_SESSION['username'];
 
     <!-- Custom Fonts -->
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
 </head>
 
 <body>
@@ -46,7 +39,7 @@ $username = $_SESSION['username'];
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Student</a>
+                <a class="navbar-brand" href="index.php">Student</a>
             </div>
 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -122,7 +115,7 @@ $username = $_SESSION['username'];
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="setting.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -160,10 +153,25 @@ $username = $_SESSION['username'];
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <!-- <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                        </li>
+
                         <li>
+                            <?php
+                            $query = "SELECT `status` FROM `applications` WHERE `student_id`='$id'";
+                            $data = mysqli_query($connect, "$query");;
+                            while ($result = mysqli_fetch_array($data)) {
+                                $tee = $result[0];
+                            }
+                            if ($tee == 'yes') {
+                            ?>
+                                <a href="tables.html"><i class="fa fa-table fa-fw"></i>Pay Registration fee</a>
+                            <?php
+                            } else { ?>
+                                <a href="tables.html"><i class="fa fa-table fa-fw"></i>Not allowed to pay.</a>
+                            <?php
+                            }
+                            ?>
+                        </li>
+                        <!--  <li>
                             <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
                         </li>
                         <li>

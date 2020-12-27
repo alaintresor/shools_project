@@ -20,7 +20,7 @@ $schoolInfor = mysqli_fetch_array($data);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Startmin - Bootstrap Admin Theme</title>
+    <title>School profiles</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -125,7 +125,7 @@ $schoolInfor = mysqli_fetch_array($data);
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="setting.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -150,6 +150,9 @@ $schoolInfor = mysqli_fetch_array($data);
                         </li>
                         <li>
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="head_mastor.php"><i class="fa fa-user-md"></i> Head Mastor</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i> Students<span class="fa arrow"></span></a>
@@ -185,35 +188,71 @@ $schoolInfor = mysqli_fetch_array($data);
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Basic Form Elements
+                                School Informations
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <form role="form" method="POST" action="profileHanlder.php" enctype='multipart/form-data'>
-                                            <div class="form-group">
-                                                <label>School Logo</label>
-                                                <input type="file" name="file">
+                                            <p><b>School Logo</b></p>
+                                            <div class="row" id="upload" style="display: none;">
+                                                <div class="col-lg-6">
+                                                    <input id="file" type="text" name="file"></div>
+                                                <div class="col-lg-6"> <button type="button" onclick="skip()">skip</button></div>
+                                            </div>
+                                            <div class="form-group" id="img">
+                                                <img width="100" src="<?php echo "../$schoolInfor[8]" ?>"><br>
+                                                <button type="button" onclick="image()">change</button>
                                             </div>
                                             <div class="form-group">
                                                 <label>Full School Name</label>
-                                                <input class="form-control" name="name" value="<?php echo $schoolInfor[1] ?>">
+                                                <input class="form-control" name="name" value="<?php echo $schoolInfor[2] ?>">
                                                 <p class="help-block">Example block-level help text here.</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>School Email</label>
+                                                <input type="email" class="form-control" name="email" value="<?php echo $schoolInfor[9] ?>" placeholder="Enter school Email Address">
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Telphone</label>
+                                                <input class="form-control" name="phone" value="<?php echo $schoolInfor[10] ?>" placeholder="Enter school contact">
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>school location</label>
+                                                <textarea placeholder="Example:kigali,gasabo,gisozi,musezero,gasharu." class="form-control" name="location" rows="2"><?php echo $schoolInfor[13] ?></textarea>
+                                                <p class="help-block"> </p>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Welcome Message</label>
-                                                <textarea class="form-control" name="message" rows="3"><?php echo $schoolInfor[2] ?></textarea>
+                                                <textarea class="form-control" name="message" rows="3"><?php echo $schoolInfor[3] ?></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label>facilities</label>
-                                                <textarea class="form-control" rows="3" placeholder="example:IT,Agricalture,...." name="fac"><?php echo $schoolInfor[4] ?></textarea>
-                                                <p class="help-block">Make sure you seprect it with ,</p>
+                                                <label>type</label>
+                                                <select class="form-control" name="type">
+                                                    <option>TVET</option>
+                                                    <option>REB</option>
+
+                                                </select>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>level</label>
+                                                <textarea class="form-control" rows="" placeholder="example:L1,L2,L3" name="level"><?php echo $schoolInfor[5] ?></textarea>
+                                                <p class="help-block">Make sure you seprect it with <b>,</b> </p>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>option</label>
+                                                <textarea class="form-control" rows="2" placeholder="example:computer science,HEG,...." name="fac"><?php echo $schoolInfor[7] ?></textarea>
+                                                <p class="help-block">Make sure you seprect it with <b>,</b> </p>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Compuses</label>
-                                                <textarea class="form-control" rows="3" name="compuse"><?php echo $schoolInfor[3] ?></textarea>
+                                                <label>Category</label>
+                                                <textarea class="form-control" rows="2" name="compuse" placeholder="ex: boarding,external"><?php echo $schoolInfor[6] ?></textarea>
                                             </div>
 
                                             <button type="submit" class="btn btn-outline btn-primary" name="done">Save Change</button>
@@ -238,7 +277,22 @@ $schoolInfor = mysqli_fetch_array($data);
 
     </div>
     <!-- /#wrapper -->
+    <script>
+        function image() {
+            img.style.display = 'none';
+            upload.style.display = 'block';
+            file.type = 'file';
+            skipBtn.style.display = 'block';
+            file.required = '';
+        }
 
+        function skip() {
+            img.style.display = 'block'
+            upload.style.display = 'none';
+
+            file.type = '';
+        }
+    </script>
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
 

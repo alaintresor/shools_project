@@ -7,9 +7,9 @@ if (isset($_GET['id'])) {
 }
 
 if (isset($_POST['login'])) {
-  $username = $_POST['username'];
+  $email = $_POST['email'];
   $password = $_POST['password'];
-  $query = "SELECT * FROM `student` WHERE `username`='$username' AND `password`='$password';";
+  $query = "SELECT * FROM `student` WHERE `email`='$email' AND `password`='$password';";
   $data = mysqli_query($connect, "$query");
   if (mysqli_num_rows($data)) {
     $row = mysqli_fetch_array($data);
@@ -18,7 +18,7 @@ if (isset($_POST['login'])) {
     $_SESSION['username'] = "$row[1] $row[2]";
     header("location:student/index.php");
   } else {
-    echo "<script>alert('Wrong username or password')</script>";
+    echo "<script>alert('Wrong email or password')</script>";
   }
 }
 ?>
@@ -32,21 +32,15 @@ if (isset($_POST['login'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="style.css" rel="stylesheet">
   <link href="assets/css/font-awesome.css" rel="stylesheet">
-  <!-- Bootstrap -->
-  <link href="assets/css/bootstrap.css" rel="stylesheet">
-  <!-- Slick slider -->
-  <link rel="stylesheet" type="text/css" href="assets/css/slick.css">
-  <!-- Date Picker -->
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datepicker.css">
-  <!-- Gallery Lightbox -->
-  <link href="assets/css/magnific-popup.css" rel="stylesheet">
-  <!-- Theme color -->
-  <link id="switcher" href="assets/css/theme-color/default-theme.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="style/css.css">
+  <!-- Css Styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+  <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+  <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+  <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
 <body>
@@ -64,8 +58,8 @@ if (isset($_POST['login'])) {
         <form class="jumbotron" id="login" method="post" action="#">
           <p class="text-center" style="background: darkgreen;color: white">Login to Apply</p>
           <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" class="form-control" placeholder="Enter username" required='' name="username">
+            <label for="username">Email:</label>
+            <input type="email" class="form-control" placeholder="Enter username" required='' name="email">
           </div>
           <div class="form-group">
             <label for="password">password:</label>

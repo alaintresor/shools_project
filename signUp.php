@@ -7,13 +7,13 @@ if (isset($_GET['id'])) {
 if (isset($_POST['signup'])) {
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
-    $query = "INSERT INTO `student` (`id`, `fname`, `lname`, `username`, `password`) VALUES (NULL, '$fname', '$lname', '$username', '$password');";
+    $query = "INSERT INTO `student` (`id`, `fname`, `lname`, `email`, `password`) VALUES (NULL, '$fname', '$lname', '$email', '$password');";
     $done = mysqli_query($connect, "$query");
     if ($done) {
         echo "<script>alert('Account created successfuly')</script>";
-        header("location:student.php");
+        header("location:student/index.php");
     } else {
         echo "error";
     }
@@ -29,21 +29,15 @@ if (isset($_POST['signup'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="style.css" rel="stylesheet">
     <link href="assets/css/font-awesome.css" rel="stylesheet">
-    <!-- Bootstrap -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <!-- Slick slider -->
-    <link rel="stylesheet" type="text/css" href="assets/css/slick.css">
-    <!-- Date Picker -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datepicker.css">
-    <!-- Gallery Lightbox -->
-    <link href="assets/css/magnific-popup.css" rel="stylesheet">
-    <!-- Theme color -->
-    <link id="switcher" href="assets/css/theme-color/default-theme.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style/css.css">
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
 <body>
@@ -58,7 +52,7 @@ if (isset($_POST['signup'])) {
                 <center>
                     <h1>Student SignUp</h1>
                 </center>
-                <form class="jumbotron" id="login" method="post" action="#">
+                <form class="jumbotron" id="login" method="post" action="#" onsubmit="return chack()">
                     <p class="text-center" style="background: darkgreen;color:white">Sign Up</p>
                     <div class="form-group">
                         <label for="username">First Name:</label>
@@ -69,8 +63,8 @@ if (isset($_POST['signup'])) {
                         <input type="text" class="form-control" placeholder="Enter your lastname" required='' name="lname">
                     </div>
                     <div class="form-group">
-                        <label for="username">Username:</label>
-                        <input type="text" class="form-control" placeholder="Enter username" required='' name="username">
+                        <label for="username">email:</label>
+                        <input type="email" class="form-control" placeholder="Enter username" required='' name="username">
                     </div>
                     <div class="form-group">
                         <label for="password">password:</label>
@@ -92,6 +86,17 @@ if (isset($_POST['signup'])) {
         </div>
 
     </div>
+    <script>
+        const chack = () => {
+            if (pwd.value === cpwd.value) {
+                return true;
+            } else {
+                alert("Two diffirent password!");
+                cpwd.focus();
+                return false;
+            }
+        }
+    </script>
 </body>
 
 </html>

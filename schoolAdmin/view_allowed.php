@@ -53,7 +53,7 @@ $result = mysqli_fetch_array($data);
                                 <b><?php echo "$result[0] $result[1]"; ?></b>
                             </div>
                             <div class="col-lg-2">
-                                <img src="<?php echo "../$applicationInfor[12]" ?>" alt="" width="80" style="border: solid blue 2px;">
+                                <img src="<?php echo "$applicationInfor[12]" ?>" alt="" width="80" style="border: solid blue 2px;">
                             </div>
                         </div>
                         <br>

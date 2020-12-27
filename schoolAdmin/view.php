@@ -53,7 +53,7 @@ $result = mysqli_fetch_array($data);
                                 <b><?php echo "$result[0] $result[1]"; ?></b>
                             </div>
                             <div class="col-lg-2">
-                                <img src="<?php echo "../$applicationInfor[12]" ?>" alt="" width="80" style="border: solid blue 2px;">
+                                <img src="<?php echo "$applicationInfor[12]" ?>" alt="" width="90" style="border: solid blue 2px;">
                             </div>
                         </div>
                         <br>
@@ -89,10 +89,10 @@ $result = mysqli_fetch_array($data);
                         <br>
                         <div class="row">
                             <div class="col-lg-8">
-                                <b>Facility</b>:<?php echo $applicationInfor[10] ?>
+                                <b>Option</b>:<?php echo $applicationInfor[10] ?>
                             </div>
                             <div class="col-lg-4">
-                                <b>Compuse</b>: <?php echo $applicationInfor[11] ?>
+                                <b>Category</b>: <?php echo $applicationInfor[11] ?>
                             </div>
                         </div>
                         <br>

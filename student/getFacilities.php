@@ -1,7 +1,7 @@
 <?php
 include "../connection.php";
 $id = $_POST['item'];
-$quert = "SELECT `facilities` FROM `schools` WHERE `id`='$id'";
+$quert = "SELECT `options` FROM `schools` WHERE `id`='$id'";
 $data = mysqli_query($connect, "$quert");
 $row = mysqli_fetch_array($data);
 

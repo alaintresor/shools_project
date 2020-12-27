@@ -1,14 +1,14 @@
 <?php
 session_start();
-if (!isset($_SESSION['schoolId'])) {
+if (!isset($_SESSION['userId'])) {
     header("location:../schools.php");
 }
 include "../connection.php";
-$id = $_SESSION['schoolId'];
-$choolName = $_SESSION['schoolname'];
-$query = "SELECT * FROM `schools` WHERE `id`='$id'";
+$id = $_SESSION['userId'];
+$userName = $_SESSION['username'];
+$query = "SELECT * FROM `student` WHERE `id`='$id'";
 $data = mysqli_query($connect, "$query");
-$schoolInfor = mysqli_fetch_array($data);
+$userInfor = mysqli_fetch_array($data);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,12 +34,6 @@ $schoolInfor = mysqli_fetch_array($data);
     <!-- Custom Fonts -->
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
 </head>
 
 <body>
@@ -49,7 +43,7 @@ $schoolInfor = mysqli_fetch_array($data);
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Startmin</a>
+                <a class="navbar-brand" href="index.php">Student</a>
             </div>
 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -60,7 +54,7 @@ $schoolInfor = mysqli_fetch_array($data);
             </button>
 
             <ul class="nav navbar-nav navbar-left navbar-top-links">
-                <li><a href="../index.htmt"><i class="fa fa-home fa-fw"></i> Website</a></li>
+                <li><a href="../index.html"><i class="fa fa-home fa-fw"></i> Website</a></li>
             </ul>
 
             <ul class="nav navbar-right navbar-top-links">
@@ -120,12 +114,12 @@ $schoolInfor = mysqli_fetch_array($data);
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> <?php echo $choolName; ?> <b class="caret"></b>
+                        <i class="fa fa-user fa-fw"></i> <?php echo $userName; ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="setting.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -163,63 +157,7 @@ $schoolInfor = mysqli_fetch_array($data);
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <!-- <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                            </ul> -->
-                        <!-- /.nav-second-level -->
-                        <!-- </li> -->
-                        <!-- <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                        </li>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -246,30 +184,26 @@ $schoolInfor = mysqli_fetch_array($data);
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <form role="form" method="POST" action="profileHanlder.php" enctype='multipart/form-data'>
+
                                             <div class="form-group">
-                                                <label>School Logo</label>
-                                                <input type="file" name="file">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Full School Name</label>
-                                                <input class="form-control" name="name" value="<?php echo $schoolInfor[1] ?>">
-                                                <p class="help-block">Example block-level help text here.</p>
+                                                <label>Firstname</label>
+                                                <input class="form-control" name="fname" value="<?php echo $userInfor[1] ?>" placeholder="Firstname" required>
+
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Welcome Message</label>
-                                                <textarea class="form-control" name="message" rows="3"><?php echo $schoolInfor[2] ?></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>facilities</label>
-                                                <textarea class="form-control" rows="3" placeholder="example:IT,Agricalture,...." name="fac"><?php echo $schoolInfor[4] ?></textarea>
-                                                <p class="help-block">Make sure you seprect it with ,</p>
+                                                <label>Lastname</label>
+                                                <input class="form-control" name="lname" value="<?php echo $userInfor[2] ?>" placeholder="Lastname" required>
+
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Compuses</label>
-                                                <textarea class="form-control" rows="3" name="compuse"><?php echo $schoolInfor[3] ?></textarea>
+                                                <label>Email</label>
+                                                <input type="email" class="form-control" name="email" value="<?php echo $userInfor[3] ?>" placeholder="Email" required>
+
                                             </div>
+
+
 
                                             <button type="submit" class="btn btn-outline btn-primary" name="done">Save Change</button>
                                             <a href="index.php"><button type="button" class="btn btn-outline btn-warning">Cancle</button></a>

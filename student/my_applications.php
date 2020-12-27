@@ -48,7 +48,7 @@ $data = mysqli_query($connect, "$query");
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Student</a>
+                <a class="navbar-brand" href="index.php">Student</a>
             </div>
 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -124,7 +124,7 @@ $data = mysqli_query($connect, "$query");
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="setting.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -194,8 +194,8 @@ $data = mysqli_query($connect, "$query");
                                         <thead>
                                             <tr>
                                                 <th>School</th>
-                                                <th>Facility</th>
-                                                <th>Compuse</th>
+                                                <th>Option</th>
+                                                <th>Category</th>
                                                 <th>IsPayed</th>
                                                 <th>Status</th>
                                             </tr>

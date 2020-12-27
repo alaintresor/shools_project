@@ -122,7 +122,7 @@ $choolName = $_SESSION['schoolname'];
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="setting.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -147,6 +147,9 @@ $choolName = $_SESSION['schoolname'];
                         </li>
                         <li class="active">
                             <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="head_mastor.php"><i class="fa fa-user-md"></i> Head Mastor</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i> Students<span class="fa arrow"></span></a>

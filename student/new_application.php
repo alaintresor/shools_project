@@ -25,7 +25,7 @@ $data = mysqli_query($connect, "$query");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Startmin - Bootstrap Admin Theme</title>
+    <title>Student admin panel</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -54,7 +54,7 @@ $data = mysqli_query($connect, "$query");
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Student</a>
+                <a class="navbar-brand" href="index.php">Student</a>
             </div>
 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -128,9 +128,9 @@ $data = mysqli_query($connect, "$query");
                         <i class="fa fa-user fa-fw"></i> <?php echo $username; ?> <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="setting.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -256,13 +256,13 @@ $data = mysqli_query($connect, "$query");
                                                     <option value="">....</option>
                                                     <?php
                                                     while ($row = mysqli_fetch_array($data)) {
-                                                        echo "<option value='$row[0]'>$row[1]<?/option>";
+                                                        echo "<option value='$row[0]'>$row[2]<?/option>";
                                                     }
                                                     ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label>Facility</label>
+                                                <label>Option</label>
                                                 <select name="fac" class="form-control" id="fact">
                                                     <option value="">....</option>
 
@@ -270,11 +270,11 @@ $data = mysqli_query($connect, "$query");
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Compuse</label>
+                                                <label>category</label>
                                                 <select name="compuse" class="form-control">
                                                     <option value="">....</option>
-                                                    <option>Huye</option>
-                                                    <option>Musanze</option>
+                                                    <option>Boarding</option>
+                                                    <option>External</option>
                                                 </select>
                                             </div><br><br>
 

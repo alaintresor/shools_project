@@ -12,7 +12,7 @@ if (isset($_POST['done'])) {
         $data = mysqli_fetch_array($selectId);
         session_start();
         $_SESSION['schoolId'] = $data[0];
-        $_SESSION['schoolname'] = $data[1];
+        $_SESSION['schoolname'] = $data[2];
 
         header("Location:schoolAdmin/index.php");
     } else {

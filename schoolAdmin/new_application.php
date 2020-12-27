@@ -6,7 +6,7 @@ if (!isset($_SESSION['schoolId'])) {
 include "../connection.php";
 $id = $_SESSION['schoolId'];
 $choolName = $_SESSION['schoolname'];
-$query = "SELECT applications.id,fname,lname,applications.facility,applications.compuse FROM student,applications,schools WHERE student.id=applications.student_id AND applications.school_id=schools.id AND schools.id='$id' AND applications.isPayed='yes' AND applications.status='pending'";
+$query = "SELECT applications.id,fname,lname,applications.facility,applications.compuse FROM student,applications,schools WHERE student.id=applications.student_id AND applications.school_id=schools.id AND schools.id='$id' AND applications.isPayed='no' AND applications.status='pending'";
 $data = mysqli_query($connect, "$query");
 
 ?>
@@ -131,7 +131,7 @@ $data = mysqli_query($connect, "$query");
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="setting.php"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -157,6 +157,9 @@ $data = mysqli_query($connect, "$query");
                         </li>
                         <li>
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="head_mastor.php"><i class="fa fa-user-md"></i> Head Mastor</a>
                         </li>
                         <li class="active">
                             <a href="#"><i class="fa fa-users fa-fw"></i> Students<span class="fa arrow"></span></a>
@@ -200,8 +203,8 @@ $data = mysqli_query($connect, "$query");
                                             <tr>
                                                 <th>Firstname</th>
                                                 <th>Lastname</th>
-                                                <th>Facility</th>
-                                                <th>Compuse</th>
+                                                <th>Option</th>
+                                                <th>Category</th>
                                                 <td>Options</td>
                                             </tr>
                                         </thead>
